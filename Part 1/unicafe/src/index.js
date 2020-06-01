@@ -2,17 +2,24 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
 const Statistics = (props) => {
-return (
-<div>
-    <p><h2>Statistics</h2></p>
-    <p>Good {props.good}</p>
-    <p>Neutral {props.neutral}</p>
-    <p>Bad {props.bad}</p>
-    <p>All {props.total}</p>
-    <p>Average {props.avg}</p>
-    <p>Positive {props.pos}%</p>
-</div>
-)
+if (props.total === 0) {
+  return (
+    <p>Click on a button to submit feedback</p>
+  )
+}
+else {
+  return (
+    <div>
+        <p><h2>Statistics</h2></p>
+        <p>Good {props.good}</p>
+        <p>Neutral {props.neutral}</p>
+        <p>Bad {props.bad}</p>
+        <p>All {props.total}</p>
+        <p>Average {props.avg}</p>
+        <p>Positive {props.pos}%</p>
+    </div>
+    )
+ }
 }
 const App = () => {
   // save clicks of each button to own state
