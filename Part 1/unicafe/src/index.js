@@ -83,6 +83,3 @@ ReactDOM.render(<App />,
   document.getElementById('root')
 )
 
-   {/* <button onClick={handleGood}>good</button>
-        <button onClick={handleNeutral}>neutral</button>
-        <button onClick={handleBad}>bad</button> */}
