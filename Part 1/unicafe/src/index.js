@@ -1,6 +1,25 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
+const Statistic = (props) => {
+  if (props.text == "Positive") {
+    return (
+      <tr>
+        <td>{props.text}</td>
+        <td>{props.counter}%</td>
+      </tr>
+    )
+  }
+  else {
+    return (
+      <tr>
+        <td>{props.text}</td>
+        <td>{props.counter}</td>
+      </tr>
+      )
+  } 
+}
+
 const Statistics = (props) => {
 if (props.total === 0) {
   return (
@@ -11,16 +30,23 @@ else {
   return (
     <div>
         <p><h2>Statistics</h2></p>
-        <p>Good {props.good}</p>
-        <p>Neutral {props.neutral}</p>
-        <p>Bad {props.bad}</p>
-        <p>All {props.total}</p>
-        <p>Average {props.avg}</p>
-        <p>Positive {props.pos}%</p>
+        <Statistic text="Good" counter={props.good}></Statistic>
+        <Statistic text="Neutral" counter={props.neutral}></Statistic>
+        <Statistic text="Bad" counter={props.bad}></Statistic>
+        <Statistic text="Total" counter={props.total}></Statistic>
+        <Statistic text="Average" counter={props.avg}></Statistic>
+        <Statistic text="Positive" counter={props.pos}>%</Statistic>
     </div>
     )
  }
 }
+
+const Button = (props) => {
+return(
+  <button onClick={props.click}>{props.text}</button>
+  )
+}
+
 const App = () => {
   // save clicks of each button to own state
   const [good, setGood] = useState(0)
@@ -45,9 +71,9 @@ const App = () => {
   return (
     <div>
         <p><h2>Give Feedback</h2></p>
-        <button onClick={handleGood}>good</button>
-        <button onClick={handleNeutral}>neutral</button>
-        <button onClick={handleBad}>bad</button>
+        <Button text="good" click={handleGood}></Button>
+        <Button text="neutral" click={handleNeutral}></Button>
+        <Button text="bad" click={handleBad}></Button>
         <Statistics good={good} bad={bad} neutral={neutral} total={total} avg={avg} pos={pos}></Statistics>
     </div>
   )
@@ -56,3 +82,7 @@ const App = () => {
 ReactDOM.render(<App />, 
   document.getElementById('root')
 )
+
+   {/* <button onClick={handleGood}>good</button>
+        <button onClick={handleNeutral}>neutral</button>
+        <button onClick={handleBad}>bad</button> */}
