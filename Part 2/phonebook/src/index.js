@@ -13,13 +13,24 @@ const handleNewName = (event) => {
   setNewName(event.target.value)
 }
 
+const repeatNames = persons.filter(
+  person => person.name === newName
+);
+
+if (repeatNames.length > 0) {
+  alert(`${newName} is already added to phonebook`);
+  setNewName("");
+  return;
+}
+
 const addEntry = event => {
   event.preventDefault();
   const person = {
     name: newName
   }
   setPersons(persons.concat(person))
-  console.log(persons)
+  //console.log(persons)
+  setNewName("")
 }
 
   return (
