@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 
 import { useState } from 'react'
 import EntryForm from './components/EntryForm';
+import Filter from './components/Filter';
+import Display from './components/Display';
 
 const App = () => {
   const [ persons, setPersons ] = useState([
@@ -69,12 +71,11 @@ const addEntry = event => {
           <button type="submit">add</button>
         </div>
       </form> */}
-      Search for name: 
-      <input value={searchName} onChange={handleSearch}/>
+      <Filter searchName={searchName} handleSearch={handleSearch}/>
       <EntryForm newName={newName} newNumber={newNumber} handleNewNumber={handleNewNumber} handleNewName={handleNewName} addEntry={addEntry}/>
       <h2>Numbers</h2>
       ...
-      <div>
+      {/* <div>
         <ul>
           {persons.filter(person => person.name.toLowerCase().includes(searchName.toLowerCase()))
                 .map(person => (
@@ -83,7 +84,8 @@ const addEntry = event => {
                     </li>
                 ))}
         </ul>
-      </div>
+      </div> */}
+      <Display persons={persons} searchName={searchName}/>
     </div>
   )
 }
