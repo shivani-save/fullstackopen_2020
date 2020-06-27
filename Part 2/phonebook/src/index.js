@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { useState } from 'react'
+import EntryForm from './components/EntryForm';
 
 const App = () => {
   const [ persons, setPersons ] = useState([
@@ -53,7 +54,7 @@ const addEntry = event => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <form onSubmit={addEntry}>
+      {/* <form onSubmit={addEntry}>
         <div>
           name: <input value={newName} onChange={handleNewName}/>
         </div>
@@ -63,7 +64,9 @@ const addEntry = event => {
         <div>
           <button type="submit">add</button>
         </div>
-      </form>
+      </form> */}
+
+      <EntryForm newName={newName} newNumber={newNumber} handleNewNumber={handleNewNumber} handleNewName={handleNewName} addEntry={addEntry}/>
       <h2>Numbers</h2>
       ...
       <div>
