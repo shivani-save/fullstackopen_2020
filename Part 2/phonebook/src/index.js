@@ -10,6 +10,7 @@ const App = () => {
   ]) 
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
+  const [ searchName, setSearchName ] = useState('');
 
 const handleNewName = (event) => {
   setNewName(event.target.value)
@@ -19,6 +20,9 @@ const handleNewNumber = (event) => {
   setNewNumber(event.target.value)
 }
 
+const handleSearch = (event) => {
+  setSearchName(event.target.value)
+}
 const repeatNames = persons.filter(
   person => person.name === newName
 );
@@ -65,13 +69,19 @@ const addEntry = event => {
           <button type="submit">add</button>
         </div>
       </form> */}
-
+      Search for name: 
+      <input value={searchName} onChange={handleSearch}/>
       <EntryForm newName={newName} newNumber={newNumber} handleNewNumber={handleNewNumber} handleNewName={handleNewName} addEntry={addEntry}/>
       <h2>Numbers</h2>
       ...
       <div>
         <ul>
-          {persons.map(person => <li>{person.name} {person.number}</li>)}
+          {persons.filter(person => person.name.toLowerCase().includes(searchName.toLowerCase()))
+                .map(person => (
+                    <li key={person.name}>
+                        {person.name} {person.number}
+                    </li>
+                ))}
         </ul>
       </div>
     </div>

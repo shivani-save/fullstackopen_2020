@@ -15,7 +15,7 @@ const EntryForm = ({newName, handleNewName, newNumber, handleNewNumber, addEntry
                 <button type="submit">add</button>
             </div>
         </form>
-    );
-};
+    )
+}
 
 export default EntryForm;
