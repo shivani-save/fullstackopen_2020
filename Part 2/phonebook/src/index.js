@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import ReactDOM from 'react-dom';
 
-import { useState } from 'react'
 import EntryForm from './components/EntryForm';
 import Filter from './components/Filter';
 import Display from './components/Display';
@@ -13,6 +13,18 @@ const App = () => {
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ searchName, setSearchName ] = useState('');
+
+  const hook = () => {
+    console.log('effect')
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => {
+        console.log('promise fulfilled')
+        setPersons(response.data)
+      })
+  }
+  
+  useEffect(hook, [])
 
 const handleNewName = (event) => {
   setNewName(event.target.value)
