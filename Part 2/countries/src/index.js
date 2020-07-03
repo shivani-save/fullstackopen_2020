@@ -24,15 +24,15 @@ const App = () => {
 const handleSearch = (event) => {
   setSearchName(event.target.value)
 }
-const searchedCountries = countries.filter(
-  country => country.name === searchName
-);
+// const searchedCountries = countries.filter(
+//   country => country.name === searchName
+// );
 
   return (
     <div>
       <Filter searchName={searchName} handleSearch={handleSearch}/>
       <h2>Countries</h2>
-      <Display countries={countries} searchName={searchName}/>
+      <Display countries={countries} searchName={searchName} handleSearch={handleSearch}/>
     </div>
   )
 }

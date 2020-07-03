@@ -4,7 +4,7 @@ const Filter = ({searchName, handleSearch}) => {
     return (
         <div>
             Search for country: 
-            <input value={searchName} onChange={handleSearch}/>
+            <input value={searchName} onChange={event => handleSearch(event)}/>
         </div>
     )
 }
