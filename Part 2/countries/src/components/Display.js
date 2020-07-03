@@ -1,6 +1,6 @@
 import React from "react";
 
-const Display = ({searchName, countries, handleSearch}) => {
+const Display = ({searchName, countries, showButton}) => {
 
     const filt = countries.filter(c => c.name.toLowerCase().includes(searchName.toLowerCase()));
 
@@ -28,7 +28,7 @@ const Display = ({searchName, countries, handleSearch}) => {
                     {
                         filt.map(result => (
                             <li key={result.name}>
-                                {result.name} <button onClick={event => handleSearch(event)}>Show</button>
+                                {result.name} <button onClick={() => showButton(result.name)}>Show</button>
                             </li>
                         ))
                     }

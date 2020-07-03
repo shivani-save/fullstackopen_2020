@@ -24,15 +24,17 @@ const App = () => {
 const handleSearch = (event) => {
   setSearchName(event.target.value)
 }
-// const searchedCountries = countries.filter(
-//   country => country.name === searchName
-// );
+
+//TODO figure out how this is different from handleSearch
+const showButton = (name) => {
+  setSearchName(name)
+}
 
   return (
     <div>
       <Filter searchName={searchName} handleSearch={handleSearch}/>
       <h2>Countries</h2>
-      <Display countries={countries} searchName={searchName} handleSearch={handleSearch}/>
+      <Display countries={countries} searchName={searchName} showButton={showButton}/>
     </div>
   )
 }
