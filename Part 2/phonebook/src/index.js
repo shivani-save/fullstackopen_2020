@@ -1,30 +1,37 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+//import axios from 'axios'
 import ReactDOM from 'react-dom';
 
 import EntryForm from './components/EntryForm';
 import Filter from './components/Filter';
 import Display from './components/Display';
+import operations from './services/operations';
 
 const App = () => {
   const [ persons, setPersons ] = useState([
     { name: 'Arto Hellas', number: 9004765828 }
   ]) 
+
+  useEffect(() => {
+    operations.getAll()
+      .then(response => setPersons(response))
+  }, []);
+
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ searchName, setSearchName ] = useState('');
 
-  const hook = () => {
-    console.log('effect')
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
-        console.log('promise fulfilled')
-        setPersons(response.data)
-      })
-  }
+  // const hook = () => {
+  //   console.log('effect')
+  //   axios
+  //     .get('http://localhost:3001/persons')
+  //     .then(response => {
+  //       console.log('promise fulfilled')
+  //       setPersons(response.data)
+  //     })
+  // }
   
-  useEffect(hook, [])
+  // useEffect(hook, [])
 
 const handleNewName = (event) => {
   setNewName(event.target.value)
@@ -63,17 +70,14 @@ const addEntry = event => {
     name: newName,
     number: newNumber
   }
-  axios
-      .put('http://localhost:3001/persons', person)
-      .then(response => {
-        console.log('promise fulfilled')
-        setPersons(persons.concat(response.data))
-      })
-      //setPersons(persons.concat(person))
+  operations.create(person)
+        .then(response => {
+          setPersons(persons.concat(response))
+          console.log("Added: ", response)
+        })
       setNewName("")
       setNewNumber("")
-  //console.log(persons)
-}
+    }
 
   return (
     <div>
