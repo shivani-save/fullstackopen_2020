@@ -44,6 +44,19 @@ const handleNewNumber = (event) => {
 const handleSearch = (event) => {
   setSearchName(event.target.value)
 }
+
+const handleDelete = (person) => {
+  const result = window.confirm(`Delete ${person.name}`)
+
+   if (result === true) {
+     operations.remove(person.id)
+       .then(response => console.log("DELETED", person))
+   }
+
+   const updatedPersons = persons.filter(p => p.id !== person.id)
+   setPersons(updatedPersons)
+ }
+
 const repeatNames = persons.filter(
   person => person.name === newName
 );
@@ -107,7 +120,7 @@ const addEntry = event => {
                 ))}
         </ul>
       </div> */}
-      <Display persons={persons} searchName={searchName}/>
+      <Display persons={persons} searchName={searchName} handleDelete={handleDelete}/>
     </div>
   )
 }
