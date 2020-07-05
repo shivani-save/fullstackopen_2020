@@ -63,10 +63,16 @@ const addEntry = event => {
     name: newName,
     number: newNumber
   }
-  setPersons(persons.concat(person))
+  axios
+      .put('http://localhost:3001/persons', person)
+      .then(response => {
+        console.log('promise fulfilled')
+        setPersons(persons.concat(response.data))
+      })
+      //setPersons(persons.concat(person))
+      setNewName("")
+      setNewNumber("")
   //console.log(persons)
-  setNewName("")
-  setNewNumber("")
 }
 
   return (
