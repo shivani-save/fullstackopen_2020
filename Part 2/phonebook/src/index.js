@@ -5,7 +5,10 @@ import ReactDOM from 'react-dom';
 import EntryForm from './components/EntryForm';
 import Filter from './components/Filter';
 import Display from './components/Display';
+import Message from './components/Message';
 import operations from './services/operations';
+import './index.css'
+
 
 const App = () => {
   const [ persons, setPersons ] = useState([
@@ -19,7 +22,8 @@ const App = () => {
 
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
-  const [ searchName, setSearchName ] = useState('');
+  const [ searchName, setSearchName ] = useState('')
+  const [ notif, setNotif ] = useState(null)
 
   // const hook = () => {
   //   console.log('effect')
@@ -87,6 +91,11 @@ const addEntry = event => {
         .then(response => {
           setPersons(persons.concat(response))
           console.log("Added: ", response)
+          setNotif(`Added ${response.name}`)
+
+          setTimeout(() => {
+            setNotif(null)
+          }, 5000)
         })
       setNewName("")
       setNewNumber("")
@@ -94,6 +103,7 @@ const addEntry = event => {
 
   return (
     <div>
+      <Message message={notif}/>
       <h2>Phonebook</h2>
       {/* <form onSubmit={addEntry}>
         <div>
@@ -106,6 +116,7 @@ const addEntry = event => {
           <button type="submit">add</button>
         </div>
       </form> */}
+
       <Filter searchName={searchName} handleSearch={handleSearch}/>
       <EntryForm newName={newName} newNumber={newNumber} handleNewNumber={handleNewNumber} handleNewName={handleNewName} addEntry={addEntry}/>
       <h2>Numbers</h2>
