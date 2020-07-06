@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-//import axios from 'axios'
 import ReactDOM from 'react-dom';
 
 import EntryForm from './components/EntryForm';
@@ -24,18 +23,6 @@ const App = () => {
   const [ newNumber, setNewNumber ] = useState('')
   const [ searchName, setSearchName ] = useState('')
   const [ notif, setNotif ] = useState(null)
-
-  // const hook = () => {
-  //   console.log('effect')
-  //   axios
-  //     .get('http://localhost:3001/persons')
-  //     .then(response => {
-  //       console.log('promise fulfilled')
-  //       setPersons(response.data)
-  //     })
-  // }
-  
-  // useEffect(hook, [])
 
 const handleNewName = (event) => {
   setNewName(event.target.value)
@@ -105,32 +92,9 @@ const addEntry = event => {
     <div>
       <Message message={notif}/>
       <h2>Phonebook</h2>
-      {/* <form onSubmit={addEntry}>
-        <div>
-          name: <input value={newName} onChange={handleNewName}/>
-        </div>
-        <div>
-          number: <input value={newNumber} onChange={handleNewNumber}/>
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form> */}
-
       <Filter searchName={searchName} handleSearch={handleSearch}/>
       <EntryForm newName={newName} newNumber={newNumber} handleNewNumber={handleNewNumber} handleNewName={handleNewName} addEntry={addEntry}/>
-      <h2>Numbers</h2>
-      ...
-      {/* <div>
-        <ul>
-          {persons.filter(person => person.name.toLowerCase().includes(searchName.toLowerCase()))
-                .map(person => (
-                    <li key={person.name}>
-                        {person.name} {person.number}
-                    </li>
-                ))}
-        </ul>
-      </div> */}
+      <h2>Number List</h2>
       <Display persons={persons} searchName={searchName} handleDelete={handleDelete}/>
     </div>
   )
